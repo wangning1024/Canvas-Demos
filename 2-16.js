@@ -44,7 +44,7 @@ function drawRubberbandShape(loc) {
     context.stroke();
 }
 function updateRubberband(loc) {
-    updateRubberbandRectangle(loc);
+    // updateRubberbandRectangle(loc);
     drawRubberbandShape(loc);
 }
 

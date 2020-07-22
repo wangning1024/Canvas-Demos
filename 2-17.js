@@ -5,7 +5,7 @@ function drawDashedLine(context, x1, y1, x2, y2, dashLength) {
 
     let deltaX = x2 - x1;
     let deltaY = y2 - y1;
-    // 虚线长度
+    // 虚线份数
     let numDashes = Math.floor(
         Math.sqrt(deltaX * deltaX + deltaY * deltaY) / dashLength
     );

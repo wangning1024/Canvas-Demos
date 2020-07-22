@@ -17,7 +17,7 @@ CanvasRenderingContext2D.prototype.dashedLineTo = function (x, y, dashLength) {
 
     let deltaX = x - startX;
     let deltaY = y - startY;
-    // 虚线长度
+    // 虚线份数
     let numDashes = Math.floor(
         Math.sqrt(deltaX * deltaX + deltaY * deltaY) / dashLength
     );
