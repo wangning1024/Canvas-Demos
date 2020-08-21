@@ -82,3 +82,91 @@ function startDragging(loc) {
     mousedown.x = loc.x;
     mousedown.y = loc.y;
 }
+
+function startEditing() {
+    canvas.style.cursor = 'pointer';
+    editing = true;
+}
+
+function stopEditing() {
+    canvas.style.cursor = 'crosshair';
+    editing = true;
+}
+
+canvas.onmousedown = function (e) {
+    let loc = windowToCanvas(e.clientX, e.clientY);
+    e.preventDefault();
+    if (editing) {
+        polygons.forEach(function (polygon) {
+            polygon.createPath(context);
+            if (context.isPointInPath(loc.x, loc.y)) {
+                startDragging(loc);
+                dragging = polygon;
+                draggingOffsetX = loc.x - polygon.x;
+                draggingOffsetY = loc.y - polygon.y;
+                return;
+            }
+        });
+    } else {
+        startDragging(loc);
+        dragging = true;
+    }
+};
+canvas.onmousemove = function (e) {
+    let loc = windowToCanvas(e.clientX, e.clientY);
+    e.preventDefault();
+    if (editing && dragging) {
+        dragging.x = loc.x - draggingOffsetX; // todo
+        dragging.y = loc.y - draggingOffsetY;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        drawGrid(context, 'lightgray', 10, 20);
+        drawPolygons();
+    } else if (dragging) {
+        restoreDrawingSurface();
+        updateRubberband(loc, sides, startAngle);
+        if (guidewires) {
+            drawGuidewires(mousedown.x, mousedown.y);
+        }
+    }
+};
+canvas.onmouseup = function (e) {
+    let loc = windowToCanvas(e.clientX, e.clientY);
+    dragging = false;
+    if (editing) {
+
+    } else {
+        restoreDrawingSurface();
+        updateRubberband(loc); // todo
+    }
+};
+eraseAllButton.onclick = function (e) {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    drawGrid(context, 'lightgray', 10, 10);
+    saveDrawingSurface();
+};
+strokeStyleSelect.onchange = function (e) {
+    context.strokeStyle = strokeStyleSelect.value;
+};
+fillStyleSelect.onchange = function (e) {
+    context.fillStyle = fillStyleSelect.value;
+};
+editCheckbox.onchange = function (e) {
+    if (editCheckbox.checked) {
+        startEditing();
+    } else {
+        stopEditing();
+    }
+};
+
+context.strokeStyle = strokeStyleSelect.value;
+context.fillStyle = fillStyleSelect.value;
+context.shadowColor = 'rgba(0,0,0, 0.4)';
+context.shadowOffsetX = 2;
+context.shadowOffsetY = 2;
+context.shadowBlur = 4;
+drawGrid(context, 'lightgray', 10, 10);
+
+
+
+
+
