@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drawing Lines width Rubber Bands</title>
+    <style>
+        body {
+            background: #eeeeee;
+        }
+        #controls {
+            position: absolute;
+            left: 25px;
+            top: 25px;
+        }
+        #canvas {
+            background: #ffffff;
+            cursor: pointer;
+            margin-left: 10px;
+            margin-right: 10px;
+            -webkit-box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+            -moz-box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+            -box-shadow: 4px 4px 8px rgba(0,0,0,0.5);
+        }
+    </style>
+</head>
+
+<body>
+<canvas id='canvas' width='700' height='500'></canvas>
+<div id="controls">
+    stroke color:
+    <select id='strokeStyleSelect'>
+        <option value='red'>red</option>
+        <option value='green'>green</option>
+        <option value='blue'>blue</option>
+        <option value='orange'>orange</option>
+        <option value='cornflowerblue'>cornflowerblue</option>
+        <option value='goldenrod'>goldenrod</option>
+        <option value='navy'>navy</option>
+        <option value='purple'>purple</option>
+    </select>
+    Guidewires:
+    <input id="guidewireCheckbox" type="checkbox" checked>
+    <input id="eraseAllButton" type="button" value="Erase all">
+</div>
+<script src="../drawUtil.js"></script>
+<script src="2-19.js"></script>
+</body>
+</html>

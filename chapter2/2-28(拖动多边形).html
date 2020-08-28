@@ -25,7 +25,7 @@
 </head>
 
 <body>
-<canvas id='canvas' width='700' height='500'></canvas>
+<canvas id='canvas' width='1000' height='800'></canvas>
 <div id="controls">
     stroke color:
     <select id='strokeStyleSelect'>
@@ -38,11 +38,27 @@
         <option value='navy'>navy</option>
         <option value='purple'>purple</option>
     </select>
+    fill color:
+    <select id='fillStyleSelect'>
+        <option value='red'>red</option>
+        <option value='green'>green</option>
+        <option value='blue'>blue</option>
+        <option value='orange'>orange</option>
+        <option value='cornflowerblue'>cornflowerblue</option>
+        <option value='goldenrod'>goldenrod</option>
+        <option value='navy'>navy</option>
+        <option value='purple'>purple</option>
+    </select>
     Guidewires:
-    <input id="guidewireCheckbox" type="checkbox" checked>
+    fill:
+    <input id="fillCheckbox" type="checkbox" checked>
+    edit:
+    <input id="editCheckbox" type="checkbox" checked>
+    sides:
+    <input id="sidesSelect">
     <input id="eraseAllButton" type="button" value="Erase all">
 </div>
-<script src="drawUtil.js"></script>
-<script src="2-19.js"></script>
+<script src="../drawUtil.js"></script>
+<script src="2-28.js"></script>
 </body>
 </html>
