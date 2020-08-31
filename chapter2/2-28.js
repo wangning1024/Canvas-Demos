@@ -46,6 +46,7 @@ Polygon.prototype = {
     },
     createPath: function (context) {
         let points = this.getPoints();
+        console.log('points', points);
         context.beginPath();
         context.moveTo(points[0].x, points[0].y);
         for (let i = 1; i < this.sides; ++i) {
@@ -73,8 +74,10 @@ Polygon.prototype = {
     }
 }
 
+
 function saveDrawingSurface() {
-    drawingSurfaceImageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    drawingSurfaceImageData =
+        context.getImageData(0, 0, canvas.width, canvas.offsetHeight);
 }
 
 function restoreDrawingSurface() {
@@ -85,7 +88,7 @@ function drawPolygon(polygon) {
     context.beginPath();
     polygon.createPath(context);
     polygon.stroke(context);
-    if (fillCheckbox.checked()) {
+    if (fillCheckbox.checked) {
         polygon.fill(context);
     }
 }
@@ -108,7 +111,7 @@ function updateRubberbandRectangle(loc) {
 
 function drawRubberbandShape(loc, sides, startAngle) {
     let polygon = new Polygon(mousedown.x, mousedown.y,
-        rubberbandRect.width, parseInt(sidesSelect.value),
+        rubberbandRect.width, parseInt(sidesSelect.value || sides),
         (Math.PI / 180) * parseInt(startAngle),
         context.strokeStyle,
         context.fillStyle,
@@ -144,7 +147,7 @@ function startEditing() {
 
 function stopEditing() {
     canvas.style.cursor = 'crosshair';
-    editing = true;
+    editing = false;
 }
 
 canvas.onmousedown = function (e) {
