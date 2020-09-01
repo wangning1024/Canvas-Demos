@@ -47,12 +47,14 @@ Polygon.prototype = {
     createPath: function (context) {
         let points = this.getPoints();
         console.log('points', points);
-        context.beginPath();
-        context.moveTo(points[0].x, points[0].y);
-        for (let i = 1; i < this.sides; ++i) {
-            context.lineTo(points[i].x, points[i].y);
+        if (points.length > 0) {
+            context.beginPath();
+            context.moveTo(points[0].x, points[0].y);
+            for (let i = 1; i < this.sides; ++i) {
+                context.lineTo(points[i].x, points[i].y);
+            }
+            context.closePath();
         }
-        context.closePath();
     },
     stroke: function (context) {
         context.save();
@@ -153,6 +155,7 @@ function stopEditing() {
 canvas.onmousedown = function (e) {
     let loc = windowToCanvas(e.clientX, e.clientY);
     e.preventDefault();
+    console.log('editing', editing);
     if (editing) {
         polygons.forEach(function (polygon) {
             polygon.createPath(context);
