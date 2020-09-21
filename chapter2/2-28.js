@@ -189,12 +189,12 @@ canvas.onmousemove = function (e) {
 canvas.onmouseup = function (e) {
     let loc = windowToCanvas(e.clientX, e.clientY);
     dragging = false;
-    if (editing) {
-
-    } else {
-        restoreDrawingSurface();
-        updateRubberband(loc); // todo
-    }
+    // if (editing) {
+    //
+    // } else {
+    //     restoreDrawingSurface();
+    //     updateRubberband(loc); // todo
+    // }
 };
 eraseAllButton.onclick = function (e) {
     context.clearRect(0, 0, canvas.width, canvas.height);
