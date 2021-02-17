@@ -7,12 +7,14 @@ function drawTwoArcs() {
     // 大圆 逆时针绘制
     context.arc(300, 190, 150, 0, Math.PI * 2, true);
     // 小圆 顺时针绘制
-    context.arc(300, 190, 100, 0, Math.PI * 2, false);
-    context.fill();
+    context.arc(300, 190, 100, 0, Math.PI * 2);
+    // context.fill(); // 放在这里调用，会有两个路径之间的连接线
+    context.stroke();
+    context.fill(); // 放在这里调用，两个路径之间的连接线不会出现
+
     context.shadowColor = undefined;
     context.shadowOffsetX = 0;
     context.shadowOffsetY = 0;
-    context.stroke();
 }
 
 function draw() {
