@@ -48,7 +48,8 @@ function drawRubberbandShape(loc) {
     }
 
     context.beginPath();
-    context.arc(mousedown.x, mousedown.y, radius, 0, Math.PI * 2, false);
+    // context.arc(mousedown.x, mousedown.y, radius, 0, Math.PI * 2); // 以最初点击点为圆心
+    context.arc(loc.x, loc.y, radius, 0, Math.PI * 2); // 以鼠标移动位置为圆心
     context.stroke();
 
 }
