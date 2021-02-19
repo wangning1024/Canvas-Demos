@@ -183,7 +183,7 @@ canvas.onmousemove = function (e) {
         e.preventDefault();
         restoreDrawingSurface();
         if (guidewires) {
-            drawGuidelines(loc.x, loc.y);
+            drawGuidewires(loc.x, loc.y);
         }
     }
     if (dragging) {
