@@ -11,7 +11,7 @@ function draw() {
     context.shadowBlur = 15;
 
     drawCutouts();
-    strokeCutoutShapes();
+    // strokeCutoutShapes();
     context.restore();
 }
 
@@ -25,7 +25,7 @@ function drawCutouts() {
     context.fill();
 }
 
-function strokeCutoutShapes() {
+function strokeCutoutShapes() { // 这个方法是干么的？
     context.save();
     context.strokeStyle = 'rgba(0,0,0,0.7)';
 

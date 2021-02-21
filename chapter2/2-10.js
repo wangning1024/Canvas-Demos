@@ -17,6 +17,7 @@ function drawTwoArcs() {
     context.shadowOffsetY = 0;
 }
 
+
 function draw() {
     context.clearRect(0, 0, context.canvas.width, context.canvas.height);
     drawGrid(context, 'lightgray', 10, 10);
