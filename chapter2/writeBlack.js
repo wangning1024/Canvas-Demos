@@ -1,3 +1,5 @@
+// https://blog.csdn.net/weixin_33788244/article/details/93178239
+
 let canvas = document.getElementById('canvas'),
     context = canvas.getContext('2d');
 
@@ -22,7 +24,7 @@ context.canvas.onmousedown = function mouseDown(e) {
     context.moveTo(startX, startY);
 
     isDown = true;
-}
+};
 
 context.canvas.onmousemove = function mouseMove(e) {
     let loc = windowToCanvas(canvas, e.clientX, e.clientY);
@@ -36,7 +38,9 @@ context.canvas.onmousemove = function mouseMove(e) {
         context.stroke();
     }
 
-}
+};
+
+
 
 context.canvas.onmouseup = function onmouseUp(ev) {
     ev.preventDefault();
