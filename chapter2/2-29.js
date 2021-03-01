@@ -161,7 +161,7 @@ function updateDraggingPoint(loc) {
 }
 
 canvas.onmousedown = function (e) {
-    let loc = windowToCanvas(e.clientX, e.clientY);
+    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
     e.preventDefault();
     if (!editing) {
         saveDrawingSurface(context);
@@ -178,12 +178,12 @@ canvas.onmousedown = function (e) {
 }
 
 canvas.onmousemove = function (e) {
-    let loc = windowToCanvas(e.clientX, e.clientY);
+    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
     if (dragging || draggingPoint) {
         e.preventDefault();
         restoreDrawingSurface();
         if (guidewires) {
-            drawGuidelines(loc.x, loc.y);
+            drawGuidewires(loc.x, loc.y);
         }
     }
     if (dragging) {
@@ -197,7 +197,7 @@ canvas.onmousemove = function (e) {
 }
 
 canvas.onmouseup = function (e) {
-    let loc = windowToCanvas(e.clientX, e.clientY);
+    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
     restoreDrawingSurface();
     if (!editing) {
         updateRubberband(loc);

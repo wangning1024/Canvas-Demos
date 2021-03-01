@@ -48,7 +48,8 @@ function drawRubberbandShape(loc) {
     }
 
     context.beginPath();
-    context.arc(mousedown.x, mousedown.y, radius, 0, Math.PI * 2, false);
+    // context.arc(mousedown.x, mousedown.y, radius, 0, Math.PI * 2); // 以最初点击点为圆心
+    context.arc(loc.x, loc.y, radius, 0, Math.PI * 2); // 以鼠标移动位置为圆心
     context.stroke();
 
 }
@@ -60,7 +61,7 @@ function updateRubberband(loc) {
 }
 
 canvas.onmousedown = function (e) {
-    let loc = windowToCanvas(e.clientX, e.clientY);
+    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
     e.preventDefault();
     saveDrawingSurface();
     mousedown.x = loc.x;
@@ -71,7 +72,7 @@ canvas.onmousemove = function (e) {
     let loc;
     if (dragging) {
         e.preventDefault();
-        loc = windowToCanvas(e.clientX, e.clientY);
+        loc = windowToCanvas(canvas, e.clientX, e.clientY);
         restoreDrawingSurface();
         updateRubberband(loc);
         if (guidewires) {
@@ -80,7 +81,7 @@ canvas.onmousemove = function (e) {
     }
 };
 canvas.onmouseup = function (e) {
-    let loc = windowToCanvas(e.clientX, e.clientY);
+    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
     restoreDrawingSurface();
     updateRubberband(loc);
     dragging = false;

@@ -41,7 +41,7 @@ function rect(x, y, w, h, direction) {
 /**
  * 将窗口坐标转换为canvas的相对坐标
  */
-function windowToCanvas(x, y) {
+function windowToCanvas(canvas, x, y) {
     let bbox = canvas.getBoundingClientRect(); // 获取canvas元素的边框
     return {
         // 当canvas元素大小与绘图表面大小不相符时，将这两个坐标进行缩放
