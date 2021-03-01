@@ -2,40 +2,48 @@
 
 let canvas = document.getElementById('canvas'),
     context = canvas.getContext('2d');
-
 let isDown = false;
-
 let startX, startY;
+let lineWidth;
 
-context.lineWidth = 8;
 context.lineCap = 'round';
 context.lineJoin = 'round';
-// context.strokeStyle = 'green';
 
-context.canvas.onmousedown = function mouseDown(e) {
+context.canvas.onmousedown = function (e) {
     e.preventDefault();
     console.log('onmousedown');
-
-    // context.strokeRect(e.offsetX, e.offsetY, 120, 30);
-    // context.fillStyle = 'goldenrod';
-
-    startX = e.offsetX;
-    startY = e.offsetY;
+    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
+    startX = loc.x;
+    startY = loc.y;
     context.moveTo(startX, startY);
-
     isDown = true;
 };
 
-context.canvas.onmousemove = function mouseMove(e) {
+context.canvas.onmousemove = function (e) {
     let loc = windowToCanvas(canvas, e.clientX, e.clientY);
     e.preventDefault();
     if (isDown) {
+        context.save();
         console.log('drawing');
         context.moveTo(startX, startY);
-        context.lineTo(e.offsetX, e.offsetY);
-        startX = e.offsetX;
-        startY = e.offsetY;
+        context.lineTo(loc.x, loc.y);
+
+        let distance = Math.sqrt(Math.pow(loc.x - startX, 2) +
+            Math.pow(loc.y - startY, 2));
+        console.log('distance', distance);
+
+        lineWidth = 8;
+        if (distance > 3) {
+            lineWidth = Math.floor(lineWidth * (distance / 50));
+        }
+        context.lineWidth = lineWidth < 1 ? 1 : lineWidth;
+        console.log('lineWidth', context.lineWidth);
+
+        startX = loc.x;
+        startY = loc.y;
+
         context.stroke();
+        context.restore();
     }
 
 };
