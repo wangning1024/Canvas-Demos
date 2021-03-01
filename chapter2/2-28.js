@@ -153,7 +153,7 @@ function stopEditing() {
 }
 
 canvas.onmousedown = function (e) {
-    let loc = windowToCanvas(e.clientX, e.clientY);
+    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
     e.preventDefault();
     console.log('editing', editing);
     if (editing) {
@@ -173,7 +173,7 @@ canvas.onmousedown = function (e) {
     }
 };
 canvas.onmousemove = function (e) {
-    let loc = windowToCanvas(e.clientX, e.clientY);
+    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
     e.preventDefault();
     if (editing && dragging) {
         dragging.x = loc.x - draggingOffsetX; // todo
@@ -190,7 +190,7 @@ canvas.onmousemove = function (e) {
     }
 };
 canvas.onmouseup = function (e) {
-    let loc = windowToCanvas(e.clientX, e.clientY);
+    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
     dragging = false;
     // if (editing) {
     //

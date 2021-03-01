@@ -61,7 +61,7 @@ function updateRubberband(loc) {
 }
 
 canvas.onmousedown = function (e) {
-    let loc = windowToCanvas(e.clientX, e.clientY);
+    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
     e.preventDefault();
     saveDrawingSurface();
     mousedown.x = loc.x;
@@ -72,7 +72,7 @@ canvas.onmousemove = function (e) {
     let loc;
     if (dragging) {
         e.preventDefault();
-        loc = windowToCanvas(e.clientX, e.clientY);
+        loc = windowToCanvas(canvas, e.clientX, e.clientY);
         restoreDrawingSurface();
         updateRubberband(loc);
         if (guidewires) {
@@ -81,7 +81,7 @@ canvas.onmousemove = function (e) {
     }
 };
 canvas.onmouseup = function (e) {
-    let loc = windowToCanvas(e.clientX, e.clientY);
+    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
     restoreDrawingSurface();
     updateRubberband(loc);
     dragging = false;
