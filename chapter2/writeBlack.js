@@ -5,52 +5,63 @@ let canvas = document.getElementById('canvas'),
 let isDown = false;
 let startX, startY;
 let lineWidth;
+let startTime;
 
 context.lineCap = 'round';
 context.lineJoin = 'round';
 
-context.canvas.onmousedown = function (e) {
-    e.preventDefault();
+function setLineWidth(x, y) {
+    let nowDate = new Date().getTime();
+    let timeDistance = nowDate - startTime.getTime();
+    if (timeDistance < 100) {
+        lineWidth = 3;
+    } else {
+        let distance = Math.sqrt(Math.pow(x - startX, 2) +
+            Math.pow(y - startY, 2));
+        console.log('distance', distance);
+        lineWidth = 6;
+        if (distance <= 1) {
+            lineWidth = 6;
+        } else if (distance > 1 && distance < 5) {
+            lineWidth = 5;
+        } else {
+            lineWidth = 4;
+        }
+    }
+
+    return lineWidth;
+}
+
+context.canvas.onmousedown = function (ev) {
+    ev.preventDefault();
     console.log('onmousedown');
-    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
+    let loc = windowToCanvas(canvas, ev.clientX, ev.clientY);
     startX = loc.x;
     startY = loc.y;
     context.moveTo(startX, startY);
     isDown = true;
+    startTime = new Date();
 };
 
-context.canvas.onmousemove = function (e) {
-    let loc = windowToCanvas(canvas, e.clientX, e.clientY);
-    e.preventDefault();
+context.canvas.onmousemove = function (ev) {
+    let loc = windowToCanvas(canvas, ev.clientX, ev.clientY);
+    ev.preventDefault();
     if (isDown) {
-        context.save();
         console.log('drawing');
+        context.beginPath();
         context.moveTo(startX, startY);
         context.lineTo(loc.x, loc.y);
 
-        let distance = Math.sqrt(Math.pow(loc.x - startX, 2) +
-            Math.pow(loc.y - startY, 2));
-        console.log('distance', distance);
-
-        lineWidth = 8;
-        if (distance > 3) {
-            lineWidth = Math.floor(lineWidth * (distance / 50));
-        }
-        context.lineWidth = lineWidth < 1 ? 1 : lineWidth;
-        console.log('lineWidth', context.lineWidth);
-
+        // 获得笔触粗细
+        context.lineWidth = setLineWidth(loc.x, loc.y);
         startX = loc.x;
         startY = loc.y;
-
         context.stroke();
-        context.restore();
     }
 
 };
 
-
-
-context.canvas.onmouseup = function onmouseUp(ev) {
+context.canvas.onmouseup = function (ev) {
     ev.preventDefault();
     isDown = false;
 
