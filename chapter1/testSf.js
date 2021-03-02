@@ -13,7 +13,7 @@ test0.innerText = 'width: ' + canvas.width + ', height: ' + canvas.height;
 function windowToCanvas(canvas, x, y) {
     let bbox = canvas.getBoundingClientRect(); // 获取canvas元素的边框
 
-    test01.innerText = 'bbox.top: ' + bbox.left + ', bbox.top: ' + bbox.top;
+    test01.innerText = 'bbox.left: ' + bbox.left + ', bbox.top: ' + bbox.top;
     test3.innerText = 'bbox-width: ' + bbox.width + ', bbox-height: ' + bbox.height;
     return {
         // 当canvas元素大小与绘图表面大小不相符时，将这两个坐标进行缩放
