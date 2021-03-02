@@ -41,6 +41,17 @@ context.canvas.onmousedown = function (ev) {
     context.moveTo(startX, startY);
     isDown = true;
     startTime = new Date();
+
+    // context.strokeStyle = 'blue';
+    // context.save();
+    // context.strokeStyle = 'green';
+    // context.moveTo(100, 100);
+    // context.lineTo(150, 150);
+    // context.stroke();
+    // context.restore();
+    // context.stroke();
+    // context.beginPath();
+    // context.stroke();
 };
 
 context.canvas.onmousemove = function (ev) {
