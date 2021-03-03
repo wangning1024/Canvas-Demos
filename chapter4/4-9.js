@@ -48,6 +48,7 @@ function setRubberbandRectangle(x, y) {
 }
 
 function restoreRubberbandPixels() {
+
     var deviceWidthOverCSSPixels = imageData.width / rubberbandRectangle.width,
         deviceHeightOverCSSPixels = imageData.height / rubberbandRectangle.height;
 
@@ -66,8 +67,12 @@ function captureRubberbandPixels() {
         rubberbandRectangle.top,
         rubberbandRectangle.width,
         rubberbandRectangle.height);
+
+    // context.getImageData(0, 0, canvas.width, canvas.height);
+
 }
 function drawRubberband() {
+    // 绘制矩形选取框，注意处理边框的宽度
     context.strokeRect(rubberbandRectangle.left + context.lineWidth,
         rubberbandRectangle.top + context.lineWidth,
         rubberbandRectangle.width - 2*context.lineWidth,
