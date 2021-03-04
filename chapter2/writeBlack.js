@@ -15,7 +15,11 @@ function setLineWidth(x, y) {
     let timeDistance = nowDate - startTime.getTime();
     if (timeDistance < 100) {
         lineWidth = 3;
-    } else {
+    } else if(timeDistance < 500) {
+        lineWidth = 4;
+    } else if(timeDistance < 800) {
+        lineWidth = 5;
+    }else {
         let distance = Math.sqrt(Math.pow(x - startX, 2) +
             Math.pow(y - startY, 2));
         console.log('distance', distance);
@@ -23,7 +27,7 @@ function setLineWidth(x, y) {
         if (distance <= 1) {
             lineWidth = 6;
         } else if (distance > 1 && distance < 5) {
-            lineWidth = 5;
+            lineWidth = 5.5;
         } else {
             lineWidth = 4;
         }
@@ -42,16 +46,6 @@ context.canvas.onmousedown = function (ev) {
     isDown = true;
     startTime = new Date();
 
-    // context.strokeStyle = 'blue';
-    // context.save();
-    // context.strokeStyle = 'green';
-    // context.moveTo(100, 100);
-    // context.lineTo(150, 150);
-    // context.stroke();
-    // context.restore();
-    // context.stroke();
-    // context.beginPath();
-    // context.stroke();
 };
 
 context.canvas.onmousemove = function (ev) {
