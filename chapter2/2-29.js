@@ -64,9 +64,12 @@ function updateRubberbandRectangle(loc) {
 function drawBezierCurve() {
     context.beginPath();
     context.moveTo(endPoints[0].x, endPoints[0].y);
+    context.save();
+    context.lineWidth = 3;
     context.bezierCurveTo(controlPoints[0].x, controlPoints[0].y,
         controlPoints[1].x, controlPoints[1].y, endPoints[1].x, endPoints[1].y);
     context.stroke();
+    context.restore();
 }
 
 function updateEndAndControlPoints() {
@@ -242,6 +245,7 @@ instructionsNoMoreButton.onclick = function (e) {
 }
 
 context.strokeStyle = strokeStyleSelect.value;
+context.lineWidth = 10;
 drawGrid(context, GRID_STROKE_STYLE, GRID_SPACING, GRID_SPACING);
 
 
